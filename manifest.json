@@ -1,0 +1,21 @@
+{
+    "name": "Justin Wells - iOS Developer",
+    "short_name": "Justin Wells",
+    "description": "iOS & Cross-Platform Engineer specializing in enterprise healthcare applications",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#149ddd",
+    "icons": [
+        {
+            "src": "./images/self.jpg",
+            "sizes": "192x192",
+            "type": "image/jpg"
+        },
+        {
+            "src": "./images/self.jpg",
+            "sizes": "512x512",
+            "type": "image/jpg"
+        }
+    ]
+}

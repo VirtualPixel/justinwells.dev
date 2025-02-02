@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Justin Wells - iOS & Cross-Platform Engineer specializing in enterprise healthcare applications, secure hardware integration, and accessibility development">
+    <meta name="keywords" content="iOS Developer, SwiftUI, Enterprise Healthcare, Mobile Development, Pittsburgh">
+    <title>Justin Wells - iOS Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="./images/self.jpg">
+    <style>
+        :root {
+            --primary: #149ddd;
+            --text: #333;
+            --bg: #f8f9fa;
+            --subtle: #6c757d;
+            --surface: #ffffff;
+            --toggle-bg: #ffffff;
+        }
+        
+        [data-theme="dark"] {
+            --text: #e1e1e1;
+            --bg: #1a1a1a;
+            --subtle: #888;
+            --surface: #242424;
+            --toggle-bg: #242424;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            padding: 2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--toggle-bg);
+            border: 1px solid var(--primary);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            border: 3px solid var(--primary);
+            overflow: hidden;
+            background: var(--surface);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--subtle);
+            margin-bottom: 1rem;
+        }
+        
+        .location {
+            color: var(--subtle);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .summary {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .summary p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .projects {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .projects h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--bg);
+        }
+        
+        .project-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .project-title {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .project-desc {
+            color: var(--subtle);
+            margin-bottom: 0.8rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--bg);
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--subtle);
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .construction-note {
+            text-align: center;
+            background: #2c1810;
+            color: #ffd7b3;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .coming-soon {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .coming-soon h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .coming-soon p {
+            color: var(--subtle);
+        }
+
+        .unpublished-note {
+            font-size: 0.85rem;
+            color: var(--subtle);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .social-links a {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    
+    <div class="container">
+        <header>
+            <div class="profile-image">
+                <img src="./images/self.jpg" alt="Justin Wells">
+            </div>
+            <h1>Justin Wells</h1>
+            <div class="subtitle">iOS & Cross-Platform Engineer</div>
+            <div class="location">Pittsburgh, PA</div>
+            <div class="social-links">
+                <a href="https://github.com/VirtualPixel" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/virtualpixels/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:wellsmjustin@gmail.com">Email</a>
+            </div>
+        </header>
+
+        <section class="summary">
+            <p>Enterprise iOS and Cross-Platform Engineer specializing in healthcare applications, secure hardware integration, and accessibility-focused development. Experienced in building production applications with SwiftUI and creating enterprise solutions with Ionic/Capacitor.</p>
+        </section>
+
+        <section class="projects">
+            <h2>Featured Projects</h2>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">PassLink</div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" rel="noopener">Coming to App Store</a>
+                    </div>
+                </div>
+                <div class="project-desc">
+                    Secure password management and sharing application with end-to-end encryption and intuitive team collaboration features. Built with a focus on security and user privacy.
+                    <div class="unpublished-note">Currently in development - App Store release coming soon</div>
+                </div>
+                <div>
+                    <span class="tag">SwiftUI</span>
+                    <span class="tag">Encryption</span>
+                    <span class="tag">CloudKit</span>
+                    <span class="tag">KeychainServices</span>
+                    <span class="tag">CryptoKit</span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">ColorSense</div>
+                    <div class="project-links">
+                        <a href="https://github.com/VirtualPixel/ColorSense" target="_blank" rel="noopener">GitHub</a>
+                        <a href="#" target="_blank" rel="noopener">TestFlight (Coming Soon)</a>
+                    </div>
+                </div>
+                <div class="project-desc">Professional-grade color identification and analysis app with precision color matching and advanced color space conversions. Features CIEDE2000 algorithm implementation and comprehensive accessibility support.</div>
+                <div>
+                    <span class="tag">SwiftUI</span>
+                    <span class="tag">Core Graphics</span>
+                    <span class="tag">CloudKit</span>
+                    <span class="tag">Accessibility</span>
+                    <span class="tag">SwiftData</span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">Habitus</div>
+                    <div class="project-links">
+                        <a href="https://github.com/VirtualPixel/Habitus" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-desc">Habit-tracking iOS app featuring custom goals, statistics, and actionable insights with intuitive data visualization. Built with modern iOS frameworks and focused on user experience.</div>
+                <div>
+                    <span class="tag">SwiftUI</span>
+                    <span class="tag">Core Data</span>
+                    <span class="tag">Charts</span>
+                    <span class="tag">Notifications</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="coming-soon">
+            <h2>Coming Soon</h2>
+            <p>Technical blog featuring iOS development tutorials, SwiftUI tips, and enterprise insights.</p>
+        </section>
+
+        <div class="construction-note">
+            This site is under active development - A new version built with Next.js is coming soon! 
+            Check out my latest projects on GitHub or reach out via email for collaboration opportunities.
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+        }
+
+        // Check system preference on first visit
+        if (!savedTheme) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+    </script>
+</body>
+</html>
