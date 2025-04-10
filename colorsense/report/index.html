@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Report bugs or suggest improvements for ColorSense - Color Identifier app">
+  <meta name="keywords" content="ColorSense, Bug Report, Suggest Improvements, iOS App">
+  <title>ColorSense - Report an Issue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/jpg" href="../images/self.jpg">
+  <style>
+    :root {
+      --primary: #149ddd;
+      --text: #333;
+      --bg: #f8f9fa;
+      --subtle: #6c757d;
+      --surface: #ffffff;
+      --toggle-bg: #ffffff;
+      --error: #dc3545;
+      --success: #28a745;
+    }
+
+    [data-theme="dark"] {
+      --text: #e1e1e1;
+      --bg: #1a1a1a;
+      --subtle: #888;
+      --surface: #242424;
+      --toggle-bg: #242424;
+      --error: #ff6b6b;
+      --success: #4cd964;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      padding: 2rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--toggle-bg);
+      border: 1px solid var(--primary);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--subtle);
+      margin-bottom: 2rem;
+    }
+
+    .report-form {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      border: 1px solid var(--subtle);
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0e77a8;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: var(--error);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .success-message {
+      color: var(--success);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      background-color: rgba(40, 167, 69, 0.1);
+      border-radius: 4px;
+      text-align: center;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .report-form {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+<div class="container">
+  <header>
+    <h1>ColorSense</h1>
+    <div class="subtitle">Report an Issue or Suggest an Improvement</div>
+  </header>
+
+  <div class="report-form">
+    <form id="issueForm">
+      <div class="form-group">
+        <label for="issueType">Type of Report</label>
+        <select id="issueType" name="issueType" required>
+          <option value="bug">Bug Report</option>
+          <option value="improvement">Suggest Improvement</option>
+          <option value="feedback">General Feedback</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Issue Title</label>
+        <input type="text" id="title" name="title" placeholder="Brief description of the issue" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Detailed Description</label>
+        <textarea id="description" name="description" placeholder="Please provide as much detail as possible..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="steps">Steps to Reproduce (for bugs)</label>
+        <textarea id="steps" name="steps" placeholder="1. Open the app&#10;2. Navigate to...&#10;3. Tap on..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="device">Device & iOS Version</label>
+        <input type="text" id="device" name="device" placeholder="e.g. iPhone 15 Pro, iOS 17.2">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email (optional)</label>
+        <input type="email" id="email" name="email" placeholder="Your email if you'd like a response">
+      </div>
+
+      <button type="submit">Submit Report</button>
+    </form>
+
+    <div id="successMessage" class="success-message">
+      Thank you for your report! We'll review it as soon as possible.
+    </div>
+  </div>
+
+  <a href="../../index.html" class="back-link">← Back to main page</a>
+</div>
+
+<script>
+  function toggleTheme() {
+    const body = document.body;
+    const currentTheme = body.getAttribute('data-theme');
+
+    if (currentTheme === 'dark') {
+      body.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  // Check for saved theme preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.setAttribute('data-theme', 'dark');
+  }
+
+  // Check system preference on first visit
+  if (!savedTheme) {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  // Form handling with FormSubmit
+  document.getElementById('issueForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Get form data
+    const formData = new FormData(this);
+
+    // Convert to URL-encoded string for FormSubmit
+    const data = new URLSearchParams(formData);
+
+    // Send to FormSubmit service
+    fetch('https://formsubmit.co/a1d9e06f603401aa01f2de56f3eed6ad', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: data
+    })
+            .then(response => {
+              if (response.ok) {
+                // Show success message
+                document.getElementById('issueForm').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+              } else {
+                throw new Error('Network response was not ok');
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert('There was an error submitting your form. Please try again later.');
+            });
+  });
+</script>
+</body>
+</html>
